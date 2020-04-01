@@ -4,13 +4,13 @@ class Array {
   constructor() {
     this.length = 0;  // length of our array
     this.ptr = memory.allocate(this.length); // pointer to memory blocks
-    this._capacity = 0; // how many items memory can hold before needing to resize
+    this._capacity = 0; // PRIVATE - how many items memory can hold before needing to resize
   }
 
   push(value) {
     // push needs to increase the size of memory if the length is greater than the the capacity
     if(this.length >= this._capacity) {
-      this._resize((this.length + 1) * Array.SIZE_RATIO);
+      this._resize((this.length + 1) * Array.SIZE_RATIO); 
     }
     // pass our value into memory (or set)
     memory.set(this.ptr + this.length, value);
@@ -18,7 +18,7 @@ class Array {
     this.length++;
   }
 
-  _resize(size) {
+  _resize(size) { // PRIVATE
     const oldPtr = this.ptr;
     this.ptr = memory.allocate(size); 
     if (this.ptr === null) {
@@ -36,6 +36,7 @@ class Array {
     }
     return memory.get(this.ptr + index); // why do we have to return?
   }
+  
   pop(){
     if(this.length === 0) {
       throw new Error('index error');
