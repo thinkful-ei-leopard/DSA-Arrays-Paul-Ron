@@ -49,25 +49,25 @@
 // continue for each continous sequence starting at the first element
 // THEN look for the next POSITIVE element that is after a NEGATIVE element and begin the sequence there
 
-// function maxSumInArray(arr) { // O(n^2)
-//   let maxResult = 0;
-//   let leftIndex = 0, rightIndex = arr.length - 1;
+function maxSumInArray(arr) { // O(n^2)
+  let maxResult = 0;
+  let leftIndex = 0, rightIndex = arr.length - 1;
   
-//   for (let i = 0; i < arr.length; i++) {
-//     let maxSum = 0;
+  for (let i = 0; i < arr.length; i++) {
+    let maxSum = 0;
 
-//     for (let j = i; j < arr.length; j++) {
-//       maxSum += arr[j];
+    for (let j = i; j < arr.length; j++) {
+      maxSum += arr[j];
 
-//       if (maxResult < maxSum) {
-//         maxResult = maxSum;
-//         leftIndex = i;
-//         rightIndex = j;
-//       }
-//     }
-//   }
-//   return { maxResult, leftIndex, rightIndex};
-// }
+      if (maxResult < maxSum) {
+        maxResult = maxSum;
+        leftIndex = i;
+        rightIndex = j;
+      }
+    }
+  }
+  return { maxResult, leftIndex, rightIndex};
+}
 
 // let result1 = maxSumInArray([4, 6, -3, 5, -2, 1]);
 //console.log(result1);
@@ -75,20 +75,20 @@
 // Better approach. This is 0(n)
 // This is Kadane's Algorithm
 
-// function maxSumInArray3(arr) {
-//   let currentSum = 0;
-//   let maxSum = 0;
+function maxSumInArray3(arr) {
+  let currentSum = 0;
+  let maxSum = 0;
 
-//   for(let i=0; i < arr.length; i++) {
+  for(let i=0; i < arr.length; i++) {
     
-//     let currentNum = arr[i];
-//     currentSum = Math.max((currentSum + currentNum), 0);
-//     maxSum = Math.max(currentSum, maxSum);
-//   }
-//   return maxSum;
-// }
+    let currentNum = arr[i];
+    currentSum = Math.max((currentSum + currentNum), 0);
+    maxSum = Math.max(currentSum, maxSum);
+  }
+  return maxSum;
+}
 
-// console.log(maxSumInArray3([4, 6, -3, 5, -2, 1]));
+console.log(maxSumInArray3([4, 6, -3, 5, -2, 1]));
 
 // 8) Merge Arrays
 
@@ -124,19 +124,3 @@ function removeCharacters (string, vowels) {
 
 let result = removeCharacters('Battle of the Vowels: Hawaii vs. Grozny', 'aeiou');
 console.log(result);
-
-
-// function URLify (string) {
-//   const newArray = string.split('');
-//   let fixedArray = newArray.map(char => {
-//     if(char === ' '){
-//       return '%20';
-//     }
-//     return char;
-//   });
-
-//   return fixedArray.join('');
-// }
-
-// let result = URLify('www.thinkful.com /tauh ida parv een');
-// console.log(result);
